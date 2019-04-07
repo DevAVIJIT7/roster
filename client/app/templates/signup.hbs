@@ -1,0 +1,88 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 col-md-8 col-lg-6 mx-auto">
+      <div class="card card-signin my-5">
+        <div class="card-body">
+          <h5 class="card-title text-center">Sign Up</h5>
+          <form class="form-signin">
+            <label for="inputEmail">Email Address</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupPrepend3">
+                  <i class="fa fa-paper-plane"></i>
+                </span>
+              </div>
+              {{input type="email" id="email" class="form-control" value=model.email placeholder="Email address" required="required" autofocus="autofocus"}}
+            </div>`
+
+            <label for="inputPassword">Password</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupPrepend3">
+                  <i class="fa fa-key"></i>
+                </span>
+              </div>
+              {{input type="password" id="password" class="form-control" value=model.password placeholder="Password" required="required"}}
+            </div>
+            <label for="inputUsername">Username</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupPrepend3">
+                  <i class="fa fa-user"></i>
+                </span>
+              </div>
+              {{input type="text" id="username" class="form-control" value=model.username placeholder="Username" required="required"}}
+            </div>
+            <label for="inputFirstName">First Name</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupPrepend3">
+                  <i class="fa fa-user"></i>
+                </span>
+              </div>
+              {{input type="text" id="firstname" class="form-control" value=model.firstName placeholder="First Name" required="required"}}
+            </div>
+            <label for="inputLastName">Last Name</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupPrepend3">
+                  <i class="fa fa-user"></i>
+                </span>
+              </div>
+              {{input type="text" id="lastname" class="form-control" value=model.lastName placeholder="Last Name" required="required"}}
+            </div>
+            <label for="user-role">Role: </label>
+            <br>
+            <div class="form-check form-check-inline">
+              {{input class="form-check-input" type="radio" name="role" change=(action (mut role) 'Teacher')  value='Teacher'}}
+              <label class="form-check-label" for="inlineRadio1">Teacher</label>
+              {{input class="form-check-input" type="radio" name="role" change=(action (mut role) 'Student')  value='Student'}}
+              <label class="form-check-label" for="inlineRadio2">Student</label>
+            </div>
+            <br>
+            {{#if roleIsStudent}}
+              <label for="inputClassCode">Class Code</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroupPrepend3">
+                    <i class="fa fa-users"></i>
+                  </span>
+                </div>
+                {{input type="text" id="classCode" class="form-control" value=model.classCode placeholder="Class Code" required="required"}}
+              </div>
+            {{/if}}
+            <button {{action "createUser"}} class="btn btn-lg btn-primary btn-block sign-in" type="submit">Sign Up</button>
+            <hr>
+            <button class="btn btn-danger google-button" type="submit"><i class="fa fa-google-plus"></i> Sign Up with Google</button>
+            <button class="btn btn-primary facebook-button" type="submit"><i class="fa fa-facebook"></i> Sign Up with Facebook</button>
+          </form>
+        </div>
+        <div class="card-footer">
+          <div class="d-flex justify-content-center links">
+            Have an account?{{#link-to "login"}}Sign In{{/link-to}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
