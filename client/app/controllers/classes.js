@@ -5,7 +5,13 @@ export default Controller.extend({
     className: "",
     searchTerm: "",
     createClass: function() {
-      console.log(this.get('className'));
+      let _this = this;
+      let classObject = {
+        name: _this.get("className"),
+        classCode: Math.random().toString(36).slice(2).toUpperCase()
+      }
+      let classRecord = this.store.createRecord('user', classObject);
+      console.log(classRecord);
     }
   }
 });
