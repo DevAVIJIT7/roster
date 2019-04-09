@@ -9,7 +9,7 @@ const Router = EmberRouter.extend({
 Router.map(function() {
   this.route('login', { path: '/' });
   this.route('signup');
-  this.route('class');
+  this.route('classes');
 });
 
 export default Router;

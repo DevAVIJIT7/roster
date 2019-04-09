@@ -9,3 +9,47 @@
 .form-check-label {
   margin-right: 15px;
 }
+
+.logout {
+  margin-left: 1080px; 
+}
+
+.classes-div {
+  padding-top: 25px;
+}
+
+.class-item:hover {
+  background-color: #bdc3c7;
+}
+
+.class-card {
+  width: 40%;
+}
+
+.add-class-button {
+  margin-left: 10px; 
+}
+
+.vertical-divider {
+  border-left: 1px solid gainsboro;
+  height: 500px;
+  position: absolute;
+  margin-left: 40%;
+  top: 80px;
+}
+
+.student-list {
+  margin-left: 600px;
+  position: absolute;
+}
+
+.save-to-class {
+  width: 20%;
+  float: right;
+  margin-top: 10px;
+}
+
+.student-class-list {
+  overflow-y: auto;
+  height: 400px;
+}

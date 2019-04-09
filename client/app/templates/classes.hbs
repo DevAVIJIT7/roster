@@ -1,0 +1,48 @@
+<div class="container classes-div">
+  <div class="row">
+    <div class="card class-card">
+      <div class="card-header">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroupPrepend3">
+              <i class="fa fa-users"></i>
+            </span>
+          </div>
+          {{input type="text" id="className" class="form-control col-sm-9" value=className placeholder="Add Class" required="required"}}
+          <button class="btn btn-primary col-sm-2 add-class-button" {{action "createClass"}}>
+            Add
+          </button>
+        </div>
+      </div>
+      <ul class="list-group list-group-flush">
+        {{#each model as |class| }}
+          <li class="list-group-item class-item">{{class.name}}
+            <i class="fa fa-chevron-right" style="margin-left: 340px"></i>
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+    <div class="vertical-divider"></div>
+    <div class="student-list">
+      <ul class="list-group list-group-flush">
+        <h3>Add or Remove Students from your class</h3>
+        {{input type="text" id="searchTerm" class="form-control col-sm-12" value=searchTerm placeholder="Search Here"}}
+        <br>
+        <div class="student-class-list">
+          {{#each model as |class| }}
+            {{#each class.students as |student| }}
+              <li class="list-group-item">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                email: <em>{{student.email}}</em>|
+                username: <em>{{student.username}}</em>
+              </li>
+            {{/each}}
+          {{/each}}
+        </div>
+      </ul>
+      <button class="btn btn-success save-to-class" {{action "saveToClass"}}>
+        Save
+      </button>
+    </div>
+  </div>
+</div>

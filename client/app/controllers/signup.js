@@ -1,9 +1,9 @@
 import Controller from '@ember/controller';
-import { computed } from '@ember/object';
+import { equal } from '@ember/object/computed';
 
 export default Controller.extend({
   role: '',
-  roleIsStudent: Ember.computed.equal('role', 'Student'),
+  roleIsStudent: equal('role', 'Student'),
   actions: {
     createUser: function() {
       let _this = this;
@@ -16,7 +16,6 @@ export default Controller.extend({
         role: _this.get('role'),
         classCode: _this.get('model.classCode')
       }
-      console.log(userObject);
       let user = this.store.createRecord('user', userObject);
       user.save().then(function() {
         _this.notify.success('created new task');
