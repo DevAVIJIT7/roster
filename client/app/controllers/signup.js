@@ -17,8 +17,11 @@ export default Controller.extend({
         classCode: _this.get('model.classCode')
       }
       let user = this.store.createRecord('user', userObject);
-      user.save().then(function() {
-        _this.notify.success('created new task');
+      user.save().then(function(data) {
+        console.log('created new task');
+        _this.transitionToRoute('classes');
+      }, function(errors) {
+        console.log(errors);
       });
     },
   }
