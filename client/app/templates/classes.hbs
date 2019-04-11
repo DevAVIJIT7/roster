@@ -15,34 +15,47 @@
         </div>
       </div>
       <ul class="list-group list-group-flush">
-        {{#each model as |class| }}
-          <li class="list-group-item class-item">{{class.name}}
-            <i class="fa fa-chevron-right" style="margin-left: 340px"></i>
+        {{#each model.classes as |class| }}
+          <li class="list-group-item class-item" {{action "selectClass" class.code}}>
+            <span>{{class.name}} | {{class.code}}</span>
           </li>
         {{/each}}
       </ul>
     </div>
     <div class="vertical-divider"></div>
     <div class="student-list">
-      <ul class="list-group list-group-flush">
-        <h3>Add or Remove Students from your class</h3>
-        {{input type="text" id="searchTerm" class="form-control col-sm-12" value=searchTerm placeholder="Search Here"}}
-        <br>
-        <div class="student-class-list">
-          {{#each model as |class| }}
-            {{#each class.students as |student| }}
-              <li class="list-group-item">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                email: <em>{{student.email}}</em>|
-                username: <em>{{student.username}}</em>
-              </li>
+      <h3>Add or Remove Students from your class</h3>
+      {{input type="text" id="searchTerm" class="form-control col-sm-12" value=searchTerm placeholder="Search Here By Email" key-up=(action "searchStudents") }}
+      <br>
+      <div class="student-class-list">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Email</th>
+              <th>Username</th>
+              <th>Name</th>
+              <th>Class Code</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each filteredStudents as |student| }}
+              <tr>
+                <td><input type="checkbox" class="form-check-input" id="exampleCheck1"></td>
+                <td>{{student.email}}</td>
+                <td>{{student.username}}</td>
+                <td>{{student.firstName}} {{student.lastName}}</td>
+                <td>{{student.classCode}}</td>
+              </tr>
             {{/each}}
-          {{/each}}
-        </div>
-      </ul>
+          </tbody>
+        </table>
+      </div>
+    {{#if model.students.length }}
       <button class="btn btn-success save-to-class" {{action "saveToClass"}}>
         Save
       </button>
-    </div>
+    {{/if}}
+  </div>
   </div>
 </div>

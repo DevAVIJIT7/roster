@@ -16,13 +16,18 @@ export default Controller.extend({
         role: _this.get('role'),
         classCode: _this.get('model.classCode')
       }
-      let user = this.store.createRecord('user', userObject);
-      user.save().then(function(data) {
-        console.log('created new task');
-        _this.transitionToRoute('classes');
-      }, function(errors) {
-        console.log(errors);
-      });
+
+      var user = _this.store.createRecord('user', userObject);
+
+      var onSuccess = function(user) {
+        console.log(user.get("id"));
+      };
+
+      var onFail = function(user) {
+        console.log(user)
+      };
+
+      user.save().then(onSuccess, onFail);
     },
   }
 });

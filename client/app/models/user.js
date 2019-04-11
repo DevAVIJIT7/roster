@@ -10,5 +10,6 @@ export default DS.Model.extend({
   classCode: attr('string'),
   role: attr('string'),
   createdAt: attr('date'),
-  updatedAt: attr('date')
+  updatedAt: attr('date'),
+  tokens: attr()
 });
