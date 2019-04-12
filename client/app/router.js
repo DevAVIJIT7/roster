@@ -10,6 +10,11 @@ Router.map(function() {
   this.route('login', { path: '/' });
   this.route('signup');
   this.route('classes');
+  this.route('assignments', function() {
+  	this.route('index', {path: '/'});
+    this.route('new');
+    this.route('show', { path: '/:assignment_id' });
+  });
 });
 
 export default Router;

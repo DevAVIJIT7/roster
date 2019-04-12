@@ -14,8 +14,12 @@
   margin-left: 1080px; 
 }
 
-.classes-div {
+.classes-div, .assignment-list {
   padding-top: 25px;
+}
+
+.assignment-header {
+  margin: 5px;
 }
 
 .class-item:hover {
@@ -52,4 +56,8 @@
 .student-class-list {
   overflow-y: auto;
   height: 400px;
+}
+
+.add-question {
+  float: right;
 }

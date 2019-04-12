@@ -1,4 +1,5 @@
 import Controller from '@ember/controller';
+import { A } from '@ember/array';
 
 var removeClassName = function(event) {
   if (event.target.tagName == "SPAN") {
@@ -19,6 +20,7 @@ export default Controller.extend({
   className: "",
   searchTerm: "",
   selectedClassCode: "",
+  selectedStudents: A([]),
   activeClassName: "",
   filteredStudents: function() {
     return this.get('model.students')
@@ -49,6 +51,14 @@ export default Controller.extend({
         this.set("filteredStudents", newList); 
       }
     },
+    selectStudent: function(studentId) {
+      console.log(this.selectedStudents)
+      if (this.selectedStudents.includes(studentId)) {
+        this.selectedStudents.removeObject(studentId)
+      } else {
+        this.selectedStudents.pushObject(studentId);
+      }
+    },
     searchStudents: function() {
       let students = this.get('model.students');
       if (this.get("searchTerm") == "") {
@@ -56,6 +66,17 @@ export default Controller.extend({
       } else {
         let newList = students.filter((student) => student.email.toLowerCase().indexOf(this.get("searchTerm").toLowerCase()) > -1);
         this.set("filteredStudents", newList); 
+      }
+    },
+    saveToClass: function() {
+      var _this = this;
+      if(this.selectedStudents.length > 0) {
+        this.selectedStudents.forEach((studentId) => {
+          this.store.findRecord('user', studentId).then(function(user) {
+            user.set('classCode', _this.get("selectedClassCode"));
+            user.save();
+          });
+        })
       }
     }
   }

@@ -5,26 +5,34 @@
         <div class="input-group">
           <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroupPrepend3">
-              <i class="fa fa-users"></i>
+              <i class="fa fa-question-circle"></i>
             </span>
           </div>
-          {{input type="text" id="className" class="form-control col-sm-9" value=className placeholder="Add Class" required="required"}}
+          {{input type="text" id="assignmentName" class="form-control col-sm-9" value=assignmentName placeholder="Assignment Name" required="required"}}
           <button class="btn btn-primary col-sm-2 add-class-button" {{action "createClass"}}>
             Add
           </button>
         </div>
       </div>
-      <ul class="list-group list-group-flush">
-        {{#each model.classes as |class| }}
-          <li class="list-group-item class-item" {{action "selectClass" class.code}}>
-            <span>{{class.name}} | {{class.code}}</span>
-          </li>
-        {{/each}}
-      </ul>
+      <div class="card-body">
+        {{textarea value=this.name cols="56" rows="6" placeholder="Add Question"}}
+        {{input type="text" id="option1" class="form-control" value=option1 placeholder="Option 1" required="required"}}
+        <br>
+        {{input type="text" id="option2" class="form-control" value=option2 placeholder="Option 2" required="required"}}
+        <br>
+        {{input type="text" id="option3" class="form-control" value=option3 placeholder="Option 3" required="required"}}
+        <br>
+        {{input type="text" id="option4" class="form-control" value=option4 placeholder="Option 4" required="required"}}
+        <br>
+        {{input type="text" id="answer" class="form-control col-lg-4" value=answer placeholder="Correct Option" required="required"}}
+        <button class="btn btn-success col-sm-2 add-question" {{action "createQuestion"}}>
+          Add
+        </button>
+      </div>
     </div>
     <div class="vertical-divider"></div>
     <div class="student-list">
-      <h3>Add or Remove Students from your class</h3>
+      <h3>Preview</h3>
       {{input type="text" id="searchTerm" class="form-control col-sm-12" value=searchTerm placeholder="Search Here By Email" key-up=(action "searchStudents") }}
       <br>
       <div class="student-class-list">

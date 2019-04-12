@@ -1,0 +1,32 @@
+<div class="container assignment-list">
+  <div class="row assignment-header">
+    <h2 class="col-lg-11">Assignments</h2>
+    {{#link-to "assignments.new" class="btn btn-success"}}
+      New
+    {{/link-to}}
+  </div>
+  <div class="col-lg-12">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Title</th>
+          <th>Created By</th>
+          <th>Total No Questions</th>
+          <th>No of Assigned Students</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each model as |assignment| }}
+          <tr>
+            <td></td>
+            <td>{{assignment.title}}</td>
+            <td>{{assignment.user.firstName}}</td>
+            <td>{{assignment.questions.length}}</td>
+            <td>{{assignment.students.length}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
