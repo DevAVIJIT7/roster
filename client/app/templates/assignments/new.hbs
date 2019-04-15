@@ -1,6 +1,11 @@
 <div class="container classes-div">
+  {{#if successMessage}}
+    <div class="alert alert-success">
+      <strong>{{successMessage}}</strong>
+    </div>
+  {{/if}}
   <div class="row">
-    <div class="card class-card">
+    <div class="card class-card col=lg-5">
       <div class="card-header">
         <div class="input-group">
           <div class="input-group-prepend">
@@ -8,14 +13,12 @@
               <i class="fa fa-question-circle"></i>
             </span>
           </div>
-          {{input type="text" id="assignmentName" class="form-control col-sm-9" value=assignmentName placeholder="Assignment Name" required="required"}}
-          <button class="btn btn-primary col-sm-2 add-class-button" {{action "createClass"}}>
-            Add
-          </button>
+          {{input type="text" id="assignmentName" class="form-control col-sm-12" value=model.title placeholder="Assignment Name" required="required"}}
         </div>
       </div>
       <div class="card-body">
-        {{textarea value=this.name cols="56" rows="6" placeholder="Add Question"}}
+        {{textarea class="form-control" value=question cols="56" rows="6" placeholder="Add Question"}}
+        <br>
         {{input type="text" id="option1" class="form-control" value=option1 placeholder="Option 1" required="required"}}
         <br>
         {{input type="text" id="option2" class="form-control" value=option2 placeholder="Option 2" required="required"}}
@@ -24,48 +27,39 @@
         <br>
         {{input type="text" id="option4" class="form-control" value=option4 placeholder="Option 4" required="required"}}
         <br>
-        {{input type="text" id="answer" class="form-control col-lg-4" value=answer placeholder="Correct Option" required="required"}}
+        {{input type="number" id="answer" class="form-control col-lg-4" value=answer placeholder="Correct Option" required="required"}}
         <button class="btn btn-success col-sm-2 add-question" {{action "createQuestion"}}>
           Add
         </button>
       </div>
     </div>
-    <div class="vertical-divider"></div>
-    <div class="student-list">
-      <h3>Preview</h3>
-      {{input type="text" id="searchTerm" class="form-control col-sm-12" value=searchTerm placeholder="Search Here By Email" key-up=(action "searchStudents") }}
+    <div class="col-lg-1"></div>
+    <div class="vertical-divider col-lg-1"></div>
+    <div class="col-lg-5">
+      <h4>Preview: {{model.title}}</h4>
+      <hr>
       <br>
-      <div class="student-class-list">
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Email</th>
-              <th>Username</th>
-              <th>Name</th>
-              <th>Class Code</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each filteredStudents as |student| }}
-              <tr>
-                <td><input type="checkbox" 
-                  class="form-check-input" onchange={{action "selectStudent" student.id}} 
-                  id="exampleCheck1"></td>
-                <td>{{student.email}}</td>
-                <td>{{student.username}}</td>
-                <td>{{student.firstName}} {{student.lastName}}</td>
-                <td>{{student.classCode}}</td>
-              </tr>
-            {{/each}}
-          </tbody>
-        </table>
+      <div class="container">
+        {{#if questions.length }}
+          {{#each questions as |question index|}}
+            <div class="card">
+              {{log question}}
+              <div class="card-header">{{index}}. {{question.body}}</div>
+              <div class="card-body">
+                {{#each question.options as |option|}}
+                  <label><input type="radio" name="optradio" disabled>{{option}}</label>
+                {{/each}}
+              </div>
+              <div class="card-footer">
+                {{question.answer}}
+              </div>
+            </div>
+          {{/each}}
+        {{/if}}
       </div>
-    {{#if model.students.length }}
-      <button class="btn btn-success save-to-class" {{action "saveToClass"}}>
+      <button class="btn btn-primary col-sm-2 add-class-button" {{action "createAssignment"}}>
         Save
       </button>
-    {{/if}}
-  </div>
+    </div>
   </div>
 </div>

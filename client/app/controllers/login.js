@@ -40,6 +40,7 @@ export default Controller.extend({
       loginUser.save().then((res) => {
         this.session.login(res)
         this.applicationController.set("showNavBar", true);
+        this.applicationController.set("currentUser", res.data);        
         if(res.role === "Student") {
           this.transitionToRoute("assignments");
         } else if (res.role === "Teacher") {

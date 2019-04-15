@@ -1,4 +1,9 @@
 <div class="container classes-div">
+  {{#if successMessage}}
+    <div class="alert alert-success">
+      <strong>{{successMessage}}</strong>
+    </div>
+  {{/if}}
   <div class="row">
     <div class="card class-card col-lg-5">
       <div class="card-header">

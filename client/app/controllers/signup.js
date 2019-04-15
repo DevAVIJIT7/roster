@@ -1,11 +1,13 @@
 import Controller from '@ember/controller';
 import { equal } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
+import { inject } from '@ember/controller'; 
 
 export default Controller.extend({
   role: '',
   roleIsStudent: equal('role', 'Student'),
   session: service(),
+  applicationController: inject('application'),
   actions: {
     createUser: function() {
       let _this = this;
@@ -26,6 +28,7 @@ export default Controller.extend({
       };
 
       user.save().then((user) => {
+        this.applicationController.set("showNavBar", true);
         this.session.login(user)
         if(user.role === "Student") {
           this.transitionToRoute("assignments");

@@ -22,6 +22,7 @@ export default Controller.extend({
   selectedClassCode: "",
   selectedStudents: A([]),
   activeClassName: "",
+  successMessage: "",
   filteredStudents: function() {
     return this.get('model.students')
   }.property('model.students'),
@@ -47,7 +48,7 @@ export default Controller.extend({
       } else {
         this.set("selectedClassCode", code);
         addClassName(event);
-        let newList = students.filter((student) => student.classCode.toLowerCase().indexOf(this.get("selectedClassCode").toLowerCase()) > -1);
+        let newList = students.filter((student) => student.classCode === this.get("selectedClassCode"));
         this.set("filteredStudents", newList); 
       }
     },
@@ -77,6 +78,7 @@ export default Controller.extend({
             user.save();
           });
         })
+        this.set("successMessage", "Student saved Successfully.");
       }
     }
   }

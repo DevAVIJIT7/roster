@@ -1,14 +1,16 @@
-{{log showNavBar}}
 {{#if showNavBar}}
   <nav class="navbar navbar-expand-sm bg-light">
-    <ul class="navbar-nav col-lg-11">
-      <li class="nav-item">
-        {{#link-to "classes" class="nav-link"}}Classes{{/link-to}}
-      </li>
+    <ul class="navbar-nav col-lg-10">
+      {{#if isTeacher }}
+        <li class="nav-item">
+          {{#link-to "classes" class="nav-link"}}Classes{{/link-to}}
+        </li>
+      {{/if}}
       <li class="nav-item">
         {{#link-to "assignments" class="nav-link"}}Assignments{{/link-to}}
       </li>
     </ul>
+    <span>{{currentUser.role}}: {{currentUser.email}}</span>
     <div class="logout-button">
       <button class="btn btn-outline-success my-2 my-sm-0" {{action "logout"}}>Logout</button>
     </div>

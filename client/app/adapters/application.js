@@ -8,6 +8,7 @@ export default DS.RESTAdapter.extend({
     const payload = {};
     const changedAttributes = snapshot.changedAttributes();
     let hash = {}
+    console.log(changedAttributes)
     Object.keys(changedAttributes).forEach((attributeName) => {
       const newValue = changedAttributes[attributeName][1];
       hash[attributeName] = newValue;
