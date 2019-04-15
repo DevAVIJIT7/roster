@@ -1,9 +1,11 @@
 import Controller from '@ember/controller';
 import { equal } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
 
 export default Controller.extend({
   role: '',
   roleIsStudent: equal('role', 'Student'),
+  session: service(),
   actions: {
     createUser: function() {
       let _this = this;
@@ -19,15 +21,18 @@ export default Controller.extend({
 
       var user = _this.store.createRecord('user', userObject);
 
-      var onSuccess = function(user) {
-        console.log(user.get("id"));
-      };
-
       var onFail = function(user) {
         console.log(user)
       };
 
-      user.save().then(onSuccess, onFail);
+      user.save().then((user) => {
+        this.session.login(user)
+        if(user.role === "Student") {
+          this.transitionToRoute("assignments");
+        } else if (user.role === "Teacher") {
+          this.transitionToRoute("classes");
+        }
+      }, onFail);
     },
   }
 });

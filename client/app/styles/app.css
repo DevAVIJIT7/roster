@@ -10,10 +10,6 @@
   margin-right: 15px;
 }
 
-.logout {
-  margin-left: 1080px; 
-}
-
 .classes-div, .assignment-list {
   padding-top: 25px;
 }
@@ -37,15 +33,13 @@
 .vertical-divider {
   border-left: 1px solid gainsboro;
   height: 500px;
-  position: absolute;
-  margin-left: 40%;
-  top: 80px;
+  top: 40px;
 }
 
-.student-list {
+/* .student-list {
   margin-left: 600px;
   position: absolute;
-}
+} */
 
 .save-to-class {
   width: 20%;
